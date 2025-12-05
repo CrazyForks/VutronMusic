@@ -659,6 +659,21 @@ class BackGround {
         windowMouseleave: () => this.checkOsdMouseLeave()
       }
       IPCs.initialize(this.win, this.tray, this.mpris, lrc)
+
+      const proxy = (store.get('settings.proxy') || { type: 0, address: '', port: '' }) as {
+        type: 0 | 1 | 2
+        address: string
+        port: string
+      }
+
+      if (proxy.type === 0) {
+        this.win.webContents.session.setProxy({})
+      } else {
+        const map = { 1: 'http', 2: 'https' }
+        const proxyRules = `${map[proxy.type]}://${proxy.address}:${proxy.port}`
+        this.win.webContents.session.setProxy({ proxyRules })
+      }
+
       createMenu(this.win)
       if (Constants.IS_MAC) {
         const createDockMenu = (await import('./dock')).createDockMenu

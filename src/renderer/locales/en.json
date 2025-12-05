@@ -447,7 +447,19 @@
       "minimize": "Show/Hide Player"
     },
     "misc": {
-      "enableAmuseServer": "Enable 6K Amuse Youtube Music Source Compatibility Server"
+      "enableAmuseServer": "Enable 6K Amuse Youtube Music Source Compatibility Server",
+      "proxy": {
+        "text": "Proxy Protocol Settings",
+        "disable": "Disable Proxy",
+        "http": "HTTP Proxy",
+        "https": "HTTPS Proxy",
+        "address": "Server Address",
+        "port": "Port"
+      },
+      "realIp": {
+        "text": "Real IP",
+        "ip": "IP Address"
+      }
     },
     "stream": {
       "enable": "Enable Stream Music",

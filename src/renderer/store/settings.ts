@@ -4,7 +4,7 @@ import DefaultShortcuts from '../utils/shortcuts'
 import { playlistCategories } from '../utils/common'
 import cloneDeep from 'lodash/cloneDeep'
 import { useLocalMusicStore } from './localMusic'
-import { TranslationMode, TrackInfoOrder } from '@/types/music'
+import { TranslationMode, TrackInfoOrder, MiscSettings } from '@/types/music'
 
 type TextAlign = 'start' | 'center' | 'end'
 type BackgroundEffect = 'none' | 'true' | 'blur' | 'dynamic'
@@ -118,8 +118,10 @@ export const useSettingsStore = defineStore(
         DefaultShortcuts
       )
 
-    const misc = reactive({
-      enableAmuseServer: true
+    const misc: MiscSettings = reactive({
+      enableAmuseServer: false,
+      proxy: { type: 0, address: '', port: '' },
+      realIp: { enable: false, ip: '' }
     })
 
     watch(
@@ -186,6 +188,16 @@ export const useSettingsStore = defineStore(
       () => localMusic.trackInfoOrder,
       (value) => {
         window.mainApi?.send('setStoreSettings', { trackInfoOrder: toRaw(value) })
+      }
+    )
+
+    watch(
+      () => misc.proxy,
+      (value) => {
+        window.mainApi?.send('setStoreSettings', { proxy: toRaw(value) })
+      },
+      {
+        deep: true
       }
     )
 

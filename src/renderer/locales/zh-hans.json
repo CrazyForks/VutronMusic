@@ -447,7 +447,19 @@
       "minimize": "显示/隐藏播放器"
     },
     "misc": {
-      "enableAmuseServer": "启用 6K Amuse Youtube Music 信息源兼容服务器"
+      "enableAmuseServer": "启用 6K Amuse Youtube Music 信息源兼容服务器",
+      "proxy": {
+        "text": "代理协议设置",
+        "disable": "关闭代理",
+        "http": "HTTP代理",
+        "https": "HTTPS代理",
+        "address": "服务器地址",
+        "port": "端口"
+      },
+      "realIp": {
+        "text": "Real IP",
+        "ip": "IP地址"
+      }
     },
     "stream": {
       "enable": "启用流媒体音乐",

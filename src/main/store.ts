@@ -130,7 +130,8 @@ const store = new Store<TypeElectronStore>({
           globalShortcut: 'Alt+CommandOrControl+M'
         }
       ],
-      enableAmuseServer: true
+      enableAmuseServer: true,
+      proxy: { type: 0, address: '', port: '' }
     },
     accounts: {
       selected: 'navidrome',
