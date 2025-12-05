@@ -359,7 +359,8 @@ export const usePlayerStore = defineStore(
         }
       }
 
-      if (audioNodes.audio.currentTime + lyricOffset.value > lst[lst.length - 1].end / rate) {
+      const end = lst.at(-1)!.end
+      if (audioNodes.audio.currentTime + lyricOffset.value > end / rate) {
         return lst.length
       } else {
         return lst.length - 1
@@ -699,6 +700,9 @@ export const usePlayerStore = defineStore(
       }
 
       data = data.filter((l) => !/^作(词|曲)\s*(:|：)\s*无$/.exec(l.lyric.text))
+      if (data.length) {
+        data.at(-1)!.end = data.at(-1)!.end || currentTrackDuration.value
+      }
       const includeAM =
         data.length <= 10 && data.map((l) => l.lyric.text).includes('纯音乐，请欣赏')
       if (includeAM) {
